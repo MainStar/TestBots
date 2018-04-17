@@ -1,0 +1,31 @@
+1	1	Ivan	Ivanov	1000	Arts and Humanities	
+2	1	Ivan	Ivanov	1000	Humanities & Social Sciences	
+3	2	Aleksandr 	Aleksandrov	2000	Arts and Humanities	true
+4	2	Aleksandr 	Aleksandrov	2000	Clinical Medicine	
+5	3	Anna	Lina	1500	Humanities & Social Sciences	
+6	4	Rodion	Kurov	3000	Humanities & Social Sciences	
+7	4	Rodion	Kurov	1000	Clinical Medicine	
+8	4	Rodion	Kurov	200	Arts and Humanities	
+9	5	Sergey	Leonidov	1700	Clinical Medicine	true
+10	5	Sergey	Leonidov	100	Humanities & Social Sciences	
+11	6	Denis	Denisov	550	Clinical Medicine	
+12	7	Nataliya	Kurova	800	Arts and Humanities	
+13	7	Nataliya	Kurova	2500	Humanities & Social Sciences	true
+14	8	Yaroslav	Grogorov	1200	Arts and Humanities	
+15	9	Irina	Shema	1000	Humanities & Social Sciences	
+						
+
+'1', 'Ivan', 'Ivanov', 'assistant'
+'2', 'Aleksandr', 'Aleksandrov', 'professor'
+'3', 'Anna', 'Lina', 'associate professor'
+'4', 'Rodion', 'Kurov', 'assistant'
+'5', 'Sergey', 'Leonidov', 'professor'
+'6', 'Denis', 'Denisov', 'associate professor'
+'7', 'Nataliya', 'Kurova', 'professor'
+'8', 'Yaroslav', 'Grogorov', 'associate professor'
+'9', 'Irina', 'Shema', 'assistant'
+
+						
+
+
+
