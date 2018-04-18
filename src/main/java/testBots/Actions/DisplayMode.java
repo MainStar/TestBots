@@ -2,6 +2,7 @@ package testBots.Actions;
 
 public interface DisplayMode {
 
-    void displayInfo();
+    void displayInfo(String userQuestion);
+    void closeSession();
 
 }
