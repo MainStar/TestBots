@@ -15,7 +15,7 @@ public class ShowStatistic implements DisplayMode {
     private LectorsService lectorsService = new LectorsService();
     private Session session = HibernateSessionFactory.getSessionFactory().openSession();
     private List<LectorsEntity> lectors;
-    private String departmentName;
+    private String departmentName = "";
     private String answer = "The average salary of " + departmentName + " is ";
 
     private final String SHOW_THE_ADVANTAGE = "Show the advantage salary for department ";
@@ -37,12 +37,31 @@ public class ShowStatistic implements DisplayMode {
     }
 
     private void show(String userQuestion){
+        int assistansCount = 0;
+        int associateProfecorCou = 0;
+        int professorCount = 0;
         String[] questionMass = userQuestion.split(" ");
         for (String el : questionMass){
             if (!el.equals("Show") && !el.equals("statistic")){
                 departmentName += el + " ";
             }
         }
+        System.out.println(departmentName);
+        List<DepartmentEntity> departments = lectorsService.getDepartments();
+        for (DepartmentEntity el : departments){
+            if (el.getDepartment().equals(departmentName)){
+                if (el.getLector().getDegree().equals("assistant")){
+                    assistansCount += 1;
+                }
+                if (el.getLector().getDegree().equals("professor")){
+                    professorCount += 1;
+                }
+                if (el.getLector().getDegree().equals("associate professor")){
+                    associateProfecorCou += 1;
+                }
+            }
+        }
+        System.out.println(assistansCount + " " + associateProfecorCou + " " + professorCount);
     }
 
     private void showSalary(String userQuestion){
@@ -69,7 +88,6 @@ public class ShowStatistic implements DisplayMode {
         lectors = lectorsService.getAllLectors();
         String[] mass = userQuestion.split(SHOW_COUNT);
         departmentName = mass[1];
-        for ()
         System.out.println("Count of employee: " + lectors.size());
     }
 
