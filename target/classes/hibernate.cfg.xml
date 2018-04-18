@@ -5,11 +5,11 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/test</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/BotsCrew_Test</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 
         <property name="connection.username">root</property>
-        <property name="connection.password">admin</property>
+        <property name="connection.password">root</property>
 
         <mapping class="testBots.dao.entities.LectorsEntity"/>
         <mapping class="testBots.dao.entities.DepartmentEntity"/>
