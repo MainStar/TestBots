@@ -3,6 +3,7 @@ package testBots.Actions;
 import org.hibernate.Session;
 import testBots.dao.entities.DepartmentEntity;
 import testBots.dao.entities.LectorsEntity;
+import testBots.dao.service.DepartmentService;
 import testBots.dao.service.LectorsService;
 import testBots.dao.utils.HibernateSessionFactory;
 
@@ -13,18 +14,21 @@ import java.util.Set;
 public class ShowStatistic implements DisplayMode {
 
     private LectorsService lectorsService = new LectorsService();
+    private DepartmentService departmentService = new DepartmentService();
     private Session session = HibernateSessionFactory.getSessionFactory().openSession();
     private List<LectorsEntity> lectors;
+    private List<DepartmentEntity> departments;
     private String departmentName = "";
     private String answer = "The average salary of " + departmentName + " is ";
 
     private final String SHOW_THE_ADVANTAGE = "Show the advantage salary for department ";
-    private final String SHOW_COUNT = "Show count of employee for";
+    private final String SHOW_COUNT = "Show count of employee for ";
 
     @Override
     public void displayInfo(String userQuestion) {
 
         lectorsService.setSession(session);
+        departmentService.setSession(session);
         lectors = lectorsService.getAllLectors();
 
         if (userQuestion.indexOf(SHOW_THE_ADVANTAGE) != -1){
@@ -38,14 +42,14 @@ public class ShowStatistic implements DisplayMode {
 
     private void show(String userQuestion){
         int assistansCount = 0;
-        int associateProfecorCou = 0;
+        int associateProfessorCou = 0;
         int professorCount = 0;
-        String[] questionMass = userQuestion.split(" ");
-        for (String el : questionMass){
-            if (!el.equals("Show") && !el.equals("statistic")){
-                departmentName += el + " ";
-            }
-        }
+
+        String[] a = userQuestion.split("Show ");
+        String b = a[1];
+        String[] c = b.split(" statistic");
+        departmentName = c[0];
+
         System.out.println(departmentName);
         List<DepartmentEntity> departments = lectorsService.getDepartments();
         for (DepartmentEntity el : departments){
@@ -57,11 +61,13 @@ public class ShowStatistic implements DisplayMode {
                     professorCount += 1;
                 }
                 if (el.getLector().getDegree().equals("associate professor")){
-                    associateProfecorCou += 1;
+                    associateProfessorCou += 1;
                 }
             }
         }
-        System.out.println(assistansCount + " " + associateProfecorCou + " " + professorCount);
+        System.out.println("assistant: " + assistansCount);
+        System.out.println("associate professor " + associateProfessorCou);
+        System.out.println("professor " + professorCount);
     }
 
     private void showSalary(String userQuestion){
@@ -85,10 +91,16 @@ public class ShowStatistic implements DisplayMode {
     }
 
     private void showCount(String userQuestion){
-        lectors = lectorsService.getAllLectors();
+        departments = lectorsService.getDepartments();
+        int count = 0;
         String[] mass = userQuestion.split(SHOW_COUNT);
         departmentName = mass[1];
-        System.out.println("Count of employee: " + lectors.size());
+        for (DepartmentEntity el : departments){
+            if (el.getDepartment().equals(departmentName)){
+                count++;
+            }
+        }
+        System.out.println("Count of employee: " + count);
     }
 
     private List<Integer> sortList(List<Integer> list){
